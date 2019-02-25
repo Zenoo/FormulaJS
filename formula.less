@@ -1,0 +1,55 @@
+@keyframes caret {
+	from, to {
+		border-right-color: black;
+	}
+  
+	50% {
+		border-right-color: transparent;
+	}
+}
+
+.formula-js-container{
+	.formula-js-input{
+		border: 1px solid grey;
+		cursor: text;
+		padding: 2px;
+		font-family: monospace;
+	
+		&.active{
+			outline: rgb(77, 144, 254) auto 5px;
+			outline-offset: -2px;
+	
+			.formula-js-caret{
+				animation: caret 1.06s step-end infinite;
+			}
+		}
+
+		&>span{
+			display: inline-block;
+			border-radius: 2px;
+			background-color: #EEE;
+			color: #444;
+			padding: 0 4px;
+			margin: 2px;
+			border: 1px solid #CCC;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			cursor: pointer;
+		}
+
+		.formula-js-caret{
+			display: inline-block;
+			height: 16px;
+			border-right: 1px solid transparent;
+			margin-right: 5px;
+	
+			&:empty{
+				&:before{
+					content: '\00a0';
+				}
+			}
+		}
+	}
+}
