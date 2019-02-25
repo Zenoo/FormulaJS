@@ -168,6 +168,56 @@ class Formula {
 	}
 
 	/**
+	 * Get the String value of the Formula
+	 * @returns {String} The String representation of the Formula
+	 */
+	get(){
+		return [...this._input.children].map(e => e.textContent).join(' ');
+	}
+
+	/**
+	 * Set the Formula manually
+	 * @param {String} formulaString The Formula String
+	 * @returns {Formula} The current Formula
+	 */
+	set(formulaString){
+		this.clear().add(formulaString);
+
+		return this;
+	}
+
+	/**
+	 * Add to the Formula manually
+	 * @param {String} formulaString The Formula String
+	 * @returns {Formula} The current Formula
+	 */
+	add(formulaString){
+		// Set the caret
+		this._caret.textContent = formulaString;
+
+		// Process the string
+		this._processUserInput();
+
+		return this;
+	}
+
+	/**
+	 * Clear the Formula manually
+	 * @returns {Formula} The current Formula
+	 */
+	clear(){
+		// Remove all tags
+		this._input.querySelectorAll('span').forEach(span => {
+			span.remove();
+		});
+
+		// Set the caret
+		this._caret.textContent = '';
+
+		return this;
+	}
+
+	/**
 	 * Removes any Formula mutation from the DOM
 	 */
 	destroy() {
