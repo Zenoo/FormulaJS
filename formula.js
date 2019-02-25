@@ -39,20 +39,100 @@ class Formula {
 				`)
 				.join('')}
 			</div>
-			<div class="formula-js-fields formula-js-field-children">
-				<ul>
-					<li class="formula-js-field" data-field="test" data-children>Choice</li>
-					<li class="formula-js-field-children">
-						<ul>
-							<li class="formula-js-field" data-field="yolo">Hey</li>
-						</ul>
-					</li>
-				</ul>
-			</div>
+			${this._options.customFields ? '<div class="formula-js-fields formula-js-field-children"></div>' : ''}
 		`;
+
+		this._buildFields(this._container.querySelector('.formula-js-fields'), this._options.customFields);
 
 		this._input = this._container.firstElementChild;
 		this._caret = this._input.firstElementChild;
+	}
+
+	/**
+	 * Build the Custom Field tree
+	 * @param {Element} wrapper
+	 * @param {Object} fields
+	 * @param {String} path
+	 * @param {String} prefix
+	 * @private
+	 */
+	_buildFields(wrapper, fields, path = '', prefix){
+		// Global UL
+		const ul = document.createElement('ul');
+
+		wrapper.appendChild(ul);
+
+		// For each property
+		Object.entries(fields).forEach(([field, {name, children}]) => {
+			// Field main LI
+			const fieldLi = document.createElement('li');
+
+			fieldLi.classList.add('formula-js-field');
+			fieldLi.setAttribute('data-field', path + field);
+			fieldLi.setAttribute('data-name', prefix ? prefix + ' > ' + name : name);
+			fieldLi.innerText = name;
+			this._listenToFieldClick(fieldLi);
+
+			ul.appendChild(fieldLi);
+
+			if(children){
+				// Field chevron SPAN
+				const fieldChevron = document.createElement('span');
+
+				fieldChevron.classList.add('children');
+				this._listenToFieldChevronClick(fieldChevron);
+
+				fieldLi.appendChild(fieldChevron);
+
+				// Field children LI
+				const fieldChildrenLi = document.createElement('li');
+
+				fieldChildrenLi.classList.add('formula-js-field-children');
+
+				if(children !== true) this._buildFields(fieldChildrenLi, children, field + '.', prefix ? prefix + ' > ' + name : name);
+
+				ul.appendChild(fieldChildrenLi);
+			}
+		});
+	}
+
+	/**
+	 * Handle the click on a custom field
+	 * @param {HTMLLIElement} field 
+	 * @private
+	 */
+	_listenToFieldClick(field){
+		field.addEventListener('click', () => {
+			const tag = document.createElement('span');
+
+			tag.setAttribute('data-field', field.getAttribute('data-field'));
+			tag.innerText = field.getAttribute('data-name');
+
+			this._caret.insertAdjacentElement('beforebegin', tag);
+		});
+	}
+
+	/**
+	 * Handle the click on a custom field chevron
+	 * @param {HTMLSpanElement} chevron 
+	 * @private
+	 */
+	_listenToFieldChevronClick(chevron){
+		chevron.addEventListener('click', e => {
+			e.stopPropagation();
+
+			chevron.parentElement.classList.toggle('open');
+
+			// Children not loaded
+			if(!chevron.parentElement.nextElementSibling.children.length){
+				this._buildFields(
+					chevron.parentElement.nextElementSibling,
+					Reflect.apply(this._options.onFieldExpand, this, [chevron.parentElement]),
+					chevron.parentElement.getAttribute('data-field') + '.',
+					chevron.parentElement.getAttribute('data-name')
+				);
+			}
+		});
 	}
 
 	/**
@@ -218,7 +298,7 @@ class Formula {
 	 * @returns {String} The String representation of the Formula
 	 */
 	get(){
-		return [...this._input.children].map(e => e.textContent).join(' ');
+		return [...this._input.children].map(e => e.getAttribute('data-field') || e.textContent).join(' ');
 	}
 
 	/**

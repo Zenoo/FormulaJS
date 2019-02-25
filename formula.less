@@ -63,37 +63,35 @@
 		}
 	}
 
-	.formula-js-fields ul{
+	.formula-js-fields>ul{
 		margin-top: 5px;
 	}
 
 	.formula-js-field{
 		.formula-js-tag();
+		display: table;
 
-		&[data-children]{
-			&:after{
-				content: '';
-				display: inline-block;
-				position: relative;
-				top: -2px;
-				height: 5px;
-				width: 5px;
-				transform: rotate(135deg);
-				border-style: solid;
-				border-width: 2px 2px 0 0;
-				margin-left: 5px;
-				transition: all .2s;
+		&>.children{
+			display: inline-block;
+			position: relative;
+			top: -2px;
+			height: 5px;
+			width: 5px;
+			transform: rotate(135deg);
+			border-style: solid;
+			border-width: 2px 2px 0 0;
+			margin-left: 5px;
+			transition: all .2s;
+		}
+
+		&.open{
+			&>.children{
+				top:1px;
+				transform: rotate(-45deg);
 			}
 
-			&.open{
-				&:after{
-					top:1px;
-					transform: rotate(-45deg);
-				}
-
-				&+.formula-js-field-children{
-					.formula-js-field-open();
-				}
+			&+.formula-js-field-children{
+				.formula-js-field-open();
 			}
 		}
 	}
@@ -112,8 +110,8 @@
 				border: none;
 				margin: 0;
 
-				&:after{
-					content: none;
+				&>.children{
+					display: none;
 				}
 			}
 		}
@@ -127,8 +125,8 @@
 				border: 1px solid #CCC;
 				margin: 2px;
 
-				&:after{
-					content: '';
+				&>.children{
+					display: inline-block;
 				}
 			}
 		}
