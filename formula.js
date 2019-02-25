@@ -181,9 +181,7 @@ class Formula {
 	 * @returns {Formula} The current Formula
 	 */
 	set(formulaString){
-		this.clear().add(formulaString);
-
-		return this;
+		return this.clear().add(formulaString);
 	}
 
 	/**
