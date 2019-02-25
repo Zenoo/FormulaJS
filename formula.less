@@ -9,11 +9,32 @@
 }
 
 .formula-js-container{
+	font-family: monospace;
+
+	.formula-js-tag{
+		display: inline-block;
+		border-radius: 2px;
+		background-color: #EEE;
+		color: #444;
+		padding: 0 4px;
+		margin: 2px;
+		border: 1px solid #CCC;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		cursor: pointer;
+
+		&:active,&.active{
+			background-color: #DDD;
+		}
+	}
+
 	.formula-js-input{
 		border: 1px solid grey;
 		cursor: text;
 		padding: 2px;
-		font-family: monospace;
+		margin-bottom: 5px;
 	
 		&.active{
 			outline: rgb(77, 144, 254) auto 5px;
@@ -25,18 +46,7 @@
 		}
 
 		&>span{
-			display: inline-block;
-			border-radius: 2px;
-			background-color: #EEE;
-			color: #444;
-			padding: 0 4px;
-			margin: 2px;
-			border: 1px solid #CCC;
-			-webkit-user-select: none;
-			-moz-user-select: none;
-			-ms-user-select: none;
-			user-select: none;
-			cursor: pointer;
+			.formula-js-tag();
 		}
 
 		.formula-js-caret{
@@ -48,6 +58,77 @@
 			&:empty{
 				&:before{
 					content: '\00a0';
+				}
+			}
+		}
+	}
+
+	.formula-js-fields ul{
+		margin-top: 5px;
+	}
+
+	.formula-js-field{
+		.formula-js-tag();
+
+		&[data-children]{
+			&:after{
+				content: '';
+				display: inline-block;
+				position: relative;
+				top: -2px;
+				height: 5px;
+				width: 5px;
+				transform: rotate(135deg);
+				border-style: solid;
+				border-width: 2px 2px 0 0;
+				margin-left: 5px;
+				transition: all .2s;
+			}
+
+			&.open{
+				&:after{
+					top:1px;
+					transform: rotate(-45deg);
+				}
+
+				&+.formula-js-field-children{
+					.formula-js-field-open();
+				}
+			}
+		}
+	}
+
+	.formula-js-field-children{
+		font-size: 0;
+		padding: 0;
+		margin: 0;
+		overflow: hidden;
+		transition: all .2s;
+
+		&>ul{
+			padding-left: 20px;
+
+			&>.formula-js-field{
+				border: none;
+				margin: 0;
+
+				&:after{
+					content: none;
+				}
+			}
+		}
+	}
+
+	.formula-js-field-open{
+		font-size: inherit;
+
+		&>ul{
+			&>.formula-js-field{
+				border: 1px solid #CCC;
+				margin: 2px;
+
+				&:after{
+					content: '';
 				}
 			}
 		}

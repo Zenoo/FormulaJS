@@ -12,6 +12,9 @@ class Formula {
 		this._options = {
 			separators: [' ', 'Enter'],
 			closers: '+-*/()%^',
+			lang: {
+				field: 'Custom Field'
+			},
 			...options
 		};
 
@@ -28,6 +31,23 @@ class Formula {
 		this._container.innerHTML = `
 			<div class="formula-js-input">
 				<div class="formula-js-caret"></div>
+			</div>
+			<div class="formula-js-buttons">
+				${this._options.customFields ? `<span class="formula-js-tag field-button">${this._options.lang.field}</span>` : ''}
+				${this._options.closers.split('').map(closer => `
+					<span class="formula-js-tag single">${closer}</span>
+				`)
+				.join('')}
+			</div>
+			<div class="formula-js-fields formula-js-field-children">
+				<ul>
+					<li class="formula-js-field" data-field="test" data-children>Choice</li>
+					<li class="formula-js-field-children">
+						<ul>
+							<li class="formula-js-field" data-field="yolo">Hey</li>
+						</ul>
+					</li>
+				</ul>
 			</div>
 		`;
 
@@ -57,7 +77,6 @@ class Formula {
 		// Keypresses duplicator
 		document.addEventListener('keydown', e => {
 			if (this._input.classList.contains('active')) {
-				console.log(e);
 				// Move the caret in the input
 				if ([37, 39].includes(e.keyCode)) {
 					if(e.keyCode == 37 && this._caret.previousElementSibling){
@@ -76,6 +95,33 @@ class Formula {
 					}
 				}
 			}
+		});
+
+		// Custom Field handler
+		if(this._options.customFields){
+			this._container.querySelector('.field-button').addEventListener('click', e => {
+				// Hide custom fields
+				if(e.target.classList.contains('active')){
+					e.target.classList.remove('active');
+					this._container.querySelector('.formula-js-fields').classList.remove('formula-js-field-open');
+
+					// Close all open fields
+					this._container.querySelectorAll('.formula-js-fields .open').forEach(openField => {
+						openField.classList.remove('open');
+					});
+				}else{
+					// Show custom fields
+					e.target.classList.add('active');
+					this._container.querySelector('.formula-js-fields').classList.add('formula-js-field-open');
+				}
+			});
+		}
+
+		// Operator click
+		this._container.querySelectorAll('.single').forEach(single => {
+			single.addEventListener('click', () => {
+				this.add(single.textContent);
+			});
 		});
 	}
 
@@ -191,7 +237,7 @@ class Formula {
 	 */
 	add(formulaString){
 		// Set the caret
-		this._caret.textContent = formulaString;
+		this._caret.textContent += formulaString;
 
 		// Process the string
 		this._processUserInput();
