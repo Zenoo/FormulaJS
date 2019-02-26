@@ -88,7 +88,10 @@ const customFields = {
 const customFields = {
   firstField: {
     name: 'Pretty name',
-    children: true // When using a Boolean as the children value, you have to use the 'onFieldExpand' callback, see below
+	children: true, // When using a Boolean as the children value, you have to use the 'onFieldExpand' callback, see below
+	customData: {   // This optional object will be returned as the second argument of the 'onFieldExpand' callback
+		whateverIWant: ':D'
+	}
   },
   whatever: {
     name: 'Prettier name'
@@ -99,11 +102,14 @@ const customFields = {
 * **Dynamic fields**
 
 Using `children: true` as a Field property forces you to specify the  `onFieldExpand` callback. It will be called every time a new subtree is opened by the user.  
-The first parameter of this callback returns the field Node the user opened:
+
+  * The first parameter of this callback returns the field Node the user opened:
 ```HTML
 <li class="formula-js-field" data-field="test" data-name="Hey">Hey<span class="children"></span></li>
 ```
 The `data-field` and `data-name` attribute will allow you to build the subtree accordingly.
+
+  * The second parameter of this callback returns whatever you passed inside the `customData` attribute of your `Field`
 
 The `onFieldExpand` callback expects a Field-like object to be returned, which will be used to build the subtree.
 ```js

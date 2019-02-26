@@ -3,8 +3,9 @@
 /**
  * Field object
  * @typedef Field
- * @property {String}                         name     The field's pretty name
- * @property {Object.<String, Field>|Boolean} children Either another level of Fields or a boolean (to use in combination of the 'onFieldExpand' callback)
+ * @property {String}                         name       The field's pretty name
+ * @property {Object.<String, Field>|Boolean} children   Either another level of Fields or a boolean (to use in combination of the 'onFieldExpand' callback)
+ * @property {Object}                         customData Custom data for the field (Will be the 'onFieldExpand' callback second argument)
  * @memberof Formula
  * @example
  * {
@@ -90,7 +91,7 @@ class Formula {
 		wrapper.appendChild(ul);
 
 		// For each property
-		Object.entries(fields).forEach(([field, {name, children}]) => {
+		Object.entries(fields).forEach(([field, {name, children, customData}]) => {
 			// Field main LI
 			const fieldLi = document.createElement('li');
 
@@ -107,7 +108,7 @@ class Formula {
 				const fieldChevron = document.createElement('span');
 
 				fieldChevron.classList.add('children');
-				this._listenToFieldChevronClick(fieldChevron);
+				this._listenToFieldChevronClick(fieldChevron, customData);
 
 				fieldLi.appendChild(fieldChevron);
 
@@ -142,9 +143,10 @@ class Formula {
 	/**
 	 * Handle the click on a custom field chevron
 	 * @param {HTMLSpanElement} chevron 
+	 * @param {Object} customData 
 	 * @private
 	 */
-	_listenToFieldChevronClick(chevron){
+	_listenToFieldChevronClick(chevron, customData){
 		chevron.addEventListener('click', e => {
 			e.stopPropagation();
 
@@ -154,7 +156,7 @@ class Formula {
 			if(!chevron.parentElement.nextElementSibling.children.length){
 				this._buildFields(
 					chevron.parentElement.nextElementSibling,
-					Reflect.apply(this._options.onFieldExpand, this, [chevron.parentElement]),
+					Reflect.apply(this._options.onFieldExpand, this, [chevron.parentElement, customData]),
 					chevron.parentElement.getAttribute('data-field') + '.',
 					chevron.parentElement.getAttribute('data-name')
 				);
