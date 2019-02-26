@@ -205,6 +205,8 @@ class Formula {
 				} else {
 					// Separator
 					if (this._options.separators.includes(e.key)) {
+						e.preventDefault();
+						
 						if (this._caret.textContent.length) {
 							this._processUserInput();
 						}
