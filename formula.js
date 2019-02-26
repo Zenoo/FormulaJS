@@ -70,7 +70,7 @@ class Formula {
 			${this._options.customFields ? '<div class="formula-js-fields formula-js-field-children"></div>' : ''}
 		`;
 
-		this._buildFields(this._container.querySelector('.formula-js-fields'), this._options.customFields);
+		if(this._options.customFields) this._buildFields(this._container.querySelector('.formula-js-fields'), this._options.customFields);
 
 		this._input = this._container.firstElementChild;
 		this._caret = this._input.firstElementChild;
