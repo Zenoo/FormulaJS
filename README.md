@@ -8,7 +8,7 @@
  
 Generate formulas on the fly
 
-[![Demo](FormulaJS-demo.gif)](https://jsfiddle.net/Zenoo0/msgnwf2a/)
+[![Demo](https://github.com/Zenoo/FormulaJS/raw/master/FormulaJS-demo.gif)](https://jsfiddle.net/Zenoo0/msgnwf2a/)
 
 ### Doc
 
