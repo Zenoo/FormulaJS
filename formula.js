@@ -1,11 +1,37 @@
 /* exported Formula */
 
+/**
+ * Field object
+ * @typedef Field
+ * @property {String}                         name     The field's pretty name
+ * @property {Object.<String, Field>|Boolean} children Either another level of Fields or a boolean (to use in combination of the 'onFieldExpand' callback)
+ * @memberof Formula
+ * @example
+ * {
+ *   name: 'Pretty name',
+ *   children: {
+ *     firstChild: {
+ *       name: 'Child name'
+ *     },
+ *     secondChild: {
+ *       name: 'Second child name',
+ *       children: true
+ *     }
+ *   }
+ * }
+ */
+
 /** Formula class */
 class Formula {
 	/**
 	 * Creates an instance of Formula
-	 * @param {(Element|String)} parent
-	 * @param {Object} options
+	 * @param {(Element|String)}        parent                  The intended wrapper
+	 * @param {Object}                  [options]               Optional additional parameters
+	 * @param {String[]}                [options.separators]    Characters that will process the inputted String into a new tag
+	 * @param {String}                  [options.closers]       A chain of characters that will always trigger a new separate tag
+	 * @param {Object.<String, String>} [options.lang]          Dictionary holder (The attribute 'field' is the only one needed right now)
+	 * @param {Object.<String, Field>}  [options.customFields]  Custom Fields to display
+	 * @param {Function}                [options.onFieldExpand] Callback REQUIRED if you use the 'children: true' Field property. Expects a Field-like object to be returned
 	 */
 	constructor(parent, options) {
 		this._container = parent instanceof Element ? parent : document.querySelector(parent);
@@ -15,6 +41,7 @@ class Formula {
 			lang: {
 				field: 'Custom Field'
 			},
+			onFieldExpand: () => ({}),
 			...options
 		};
 
