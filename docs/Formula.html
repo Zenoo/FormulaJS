@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Formula<span class="signature">(parent, options)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Formula<span class="signature">(parent, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h2>
         
             <div class="class-description">Formula class</div>
         
@@ -45,7 +45,7 @@
     
 
     
-    <h4 class="name" id="Formula"><span class="type-signature"></span>new Formula<span class="signature">(parent, options)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Formula"><span class="type-signature"></span>new Formula<span class="signature">(parent, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
     
 
     
@@ -77,6 +77,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -105,10 +107,18 @@
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last">The intended wrapper</td>
         </tr>
 
     
@@ -128,10 +138,213 @@
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Optional additional parameters
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>separators</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;String></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Characters that will process the inputted String into a new tag</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>closers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">A chain of characters that will always trigger a new separate tag</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>lang</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object.&lt;String, String></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Dictionary holder (The attribute 'field' is the only one needed right now)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>customFields</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object.&lt;String, Field></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Custom Fields to display</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onFieldExpand</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Callback REQUIRED if you use the 'children: true' Field property. Expects a Field-like object to be returned</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -172,7 +385,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="formula.js.html">formula.js</a>, <a href="formula.js.html#line4">line 4</a>
+        <a href="formula.js.html">formula.js</a>, <a href="formula.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -327,7 +540,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="formula.js.html">formula.js</a>, <a href="formula.js.html#line358">line 358</a>
+        <a href="formula.js.html">formula.js</a>, <a href="formula.js.html#line385">line 385</a>
     </li></ul></dd>
     
 
@@ -462,7 +675,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="formula.js.html">formula.js</a>, <a href="formula.js.html#line318">line 318</a>
+        <a href="formula.js.html">formula.js</a>, <a href="formula.js.html#line345">line 345</a>
     </li></ul></dd>
     
 
@@ -570,7 +783,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="formula.js.html">formula.js</a>, <a href="formula.js.html#line332">line 332</a>
+        <a href="formula.js.html">formula.js</a>, <a href="formula.js.html#line359">line 359</a>
     </li></ul></dd>
     
 
@@ -678,7 +891,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="formula.js.html">formula.js</a>, <a href="formula.js.html#line347">line 347</a>
+        <a href="formula.js.html">formula.js</a>, <a href="formula.js.html#line374">line 374</a>
     </li></ul></dd>
     
 
@@ -764,7 +977,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="formula.js.html">formula.js</a>, <a href="formula.js.html#line300">line 300</a>
+        <a href="formula.js.html">formula.js</a>, <a href="formula.js.html#line327">line 327</a>
     </li></ul></dd>
     
 
@@ -921,7 +1134,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="formula.js.html">formula.js</a>, <a href="formula.js.html#line309">line 309</a>
+        <a href="formula.js.html">formula.js</a>, <a href="formula.js.html#line336">line 336</a>
     </li></ul></dd>
     
 
@@ -975,6 +1188,155 @@
     
 
     
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+<h4 class="name" id=".Field">Field</h4>
+
+
+
+
+<div class="description">
+    Field object
+</div>
+
+
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The field's pretty name</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>children</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object.&lt;String, Field></span>
+|
+
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Either another level of Fields or a boolean (to use in combination of the 'onFieldExpand' callback)</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="formula.js.html">formula.js</a>, <a href="formula.js.html#line3">line 3</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>{  name: 'Pretty name',  children: {    firstChild: {      name: 'Child name'    },    secondChild: {      name: 'Second child name',      children: true    }  }}</code></pre>
+
+
+
+            
+    
 
     
 </article>
@@ -993,7 +1355,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Feb 25 2019 16:15:58 GMT+0100 (Romance Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Feb 26 2019 10:14:32 GMT+0100 (Romance Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
