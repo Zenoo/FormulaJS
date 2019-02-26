@@ -111,7 +111,7 @@ The `data-field` and `data-name` attribute will allow you to build the subtree a
 
   * The second parameter of this callback returns whatever you passed inside the `customData` attribute of your `Field`
 
-The `onFieldExpand` callback expects a Field-like object to be returned, which will be used to build the subtree.
+The `onFieldExpand` callback expects a Promise that resolves with a Field-like object to be returned, which will be used to build the subtree.
 ```js
 // Example
 onFieldExpand: field => {
@@ -119,10 +119,10 @@ onFieldExpand: field => {
 	path = field.getAttribute('data-field'),
 	children = grabChildren(path);
 
-  return children.map(child => ({
+  return Promise.resolve(children.map(child => ({
     name: prettyName(child),
     children: hasChildren(child)
-  }));
+  })));
 }
 ```
 

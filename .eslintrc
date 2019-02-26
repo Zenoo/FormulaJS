@@ -98,7 +98,7 @@
         "new-parens": "error",
         "newline-after-var": "error",
         "newline-before-return": "error",
-        "newline-per-chained-call": "error",
+        "newline-per-chained-call": "off",
         "no-alert": "off",
         "no-array-constructor": "error",
         "no-async-promise-executor": "error",

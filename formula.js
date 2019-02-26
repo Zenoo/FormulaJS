@@ -154,12 +154,17 @@ class Formula {
 
 			// Children not loaded
 			if(!chevron.parentElement.nextElementSibling.children.length){
-				this._buildFields(
-					chevron.parentElement.nextElementSibling,
-					Reflect.apply(this._options.onFieldExpand, this, [chevron.parentElement, customData]),
-					chevron.parentElement.getAttribute('data-field') + '.',
-					chevron.parentElement.getAttribute('data-name')
-				);
+				Reflect.apply(this._options.onFieldExpand, this, [chevron.parentElement, customData]).then(fields => {
+					this._buildFields(
+						chevron.parentElement.nextElementSibling,
+						fields,
+						chevron.parentElement.getAttribute('data-field') + '.',
+						chevron.parentElement.getAttribute('data-name')
+					);
+				}).catch(error => {
+					console.log(error);
+				});
+				
 			}
 		});
 	}
