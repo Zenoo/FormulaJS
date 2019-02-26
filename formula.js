@@ -33,6 +33,7 @@ class Formula {
 	 * @param {Object.<String, String>} [options.lang]          Dictionary holder (The attribute 'field' is the only one needed right now)
 	 * @param {Object.<String, Field>}  [options.customFields]  Custom Fields to display
 	 * @param {Function}                [options.onFieldExpand] Callback REQUIRED if you use the 'children: true' Field property. Expects a Field-like object to be returned
+	 * @param {Function}                [options.onUpdate]      Callback triggered whenever the Formula gets updated. It's first parameter is the String representation of the Formula
 	 */
 	constructor(parent, options) {
 		this._container = parent instanceof Element ? parent : document.querySelector(parent);
@@ -43,6 +44,7 @@ class Formula {
 				field: 'Custom Field'
 			},
 			onFieldExpand: () => ({}),
+			onUpdate: () => {},
 			...options
 		};
 
@@ -137,6 +139,8 @@ class Formula {
 			tag.innerText = field.getAttribute('data-name');
 
 			this._caret.insertAdjacentElement('beforebegin', tag);
+
+			Reflect.apply(this._options.onUpdate, this, [this.get()]);
 		});
 	}
 
@@ -263,6 +267,8 @@ class Formula {
 			part.innerText = newPart;
 			this._caret.insertAdjacentElement('beforebegin', part);
 		});
+
+		Reflect.apply(this._options.onUpdate, this, [this.get()]);
 	}
 
 	/**

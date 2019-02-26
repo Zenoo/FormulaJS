@@ -51,6 +51,7 @@ The available options and their default values are:
   },
   customFields: undefined,    // Custom Fields to display, see below
   onFieldExpand: function(field){ ... } // Callback REQUIRED if you use the 'children: true' Field property. Expects a Field-like object to be returned
+  onUpdate: function(value){ ... } // Callback triggered whenever the Formula gets updated. It's first parameter is the String representation of the Formula
 }
 ```
 
