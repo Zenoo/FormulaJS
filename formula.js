@@ -189,7 +189,16 @@ class Formula {
 		});
 
 		document.addEventListener('click', e => {
-			if (!e.target.closest('.formula-js-input')) this._input.classList.remove('active');
+			const closestFormulaInput = e.target.closest('.formula-js-input');
+
+			// Clicked inside a FormulaJS input
+			if(closestFormulaInput){
+				// Didn't click inside the CURRENT FormulaJS input
+				if(!this._input.isSameNode(closestFormulaInput)) this._input.classList.remove('active');
+			}else{
+				// Clicked outside a FormulaJS input
+				this._input.classList.remove('active');
+			}
 		});
 
 		// Keypresses duplicator
@@ -206,7 +215,7 @@ class Formula {
 					// Separator
 					if (this._options.separators.includes(e.key)) {
 						e.preventDefault();
-						
+
 						if (this._caret.textContent.length) {
 							this._processUserInput();
 						}
