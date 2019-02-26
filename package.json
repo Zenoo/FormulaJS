@@ -1,5 +1,5 @@
 {
-	"name": "formula-js",
+	"name": "@zenoo/formula-js",
 	"version": "0.2.3",
 	"description": "Generate formulas on the fly",
 	"main": "formula.min.js",
