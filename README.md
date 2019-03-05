@@ -134,6 +134,7 @@ The full documentation is available on [https://zenoo.github.io/FormulaJS/](http
   * **`.get()`**
   * **`.set(formulaString)`**
   * **`.add(formulaString)`**
+  * **`.addField(fieldPath)`**
   * **`.clear()`**
   * **`.destroy()`**
 

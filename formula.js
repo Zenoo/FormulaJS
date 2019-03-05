@@ -390,6 +390,23 @@ class Formula {
 	}
 
 	/**
+	 * Add a custom field to the Formula manually
+	 * @param {String} fieldPath The field path
+	 * @returns {Formula} The current Formula
+	 */
+	addField(fieldPath){
+		const fieldLi = this._container.querySelector(`li.formula-js-field[data-field="${fieldPath}"]`);
+
+		if(fieldLi){
+			fieldLi.dispatchEvent(new Event('click'));
+		}else{
+			console.warn(`FormulaJS: The custom field ${fieldPath} doesn't exist. It has been ignored.`);
+		}
+
+		return this;
+	}
+
+	/**
 	 * Clear the Formula manually
 	 * @returns {Formula} The current Formula
 	 */
