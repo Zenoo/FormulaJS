@@ -272,7 +272,7 @@ class Formula {
 
 		this._caret.textContent = '';
 
-		content.split(regex).forEach(newPart => {
+		content.split(regex).filter(e => e.length).forEach(newPart => {
 			const part = document.createElement('span');
 
 			part.innerText = newPart;
