@@ -400,7 +400,8 @@ class Formula {
 		if(fieldLi){
 			fieldLi.dispatchEvent(new Event('click'));
 		}else{
-			console.warn(`FormulaJS: The custom field ${fieldPath} doesn't exist. It has been ignored.`);
+			console.warn(`FormulaJS: The custom field ${fieldPath} doesn't exist. It has been added in raw form.`);
+			this.add(fieldPath);
 		}
 
 		return this;
