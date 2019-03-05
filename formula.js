@@ -154,7 +154,20 @@ class Formula {
 		chevron.addEventListener('click', e => {
 			e.stopPropagation();
 
-			chevron.parentElement.classList.toggle('open');
+			if(chevron.parentElement.classList.contains('open')){
+				chevron.parentElement.classList.remove('open');
+
+				// Close children trees too
+				const currentChildren = chevron.parentElement.nextElementSibling;
+
+				if(currentChildren && currentChildren.classList.contains('formula-js-field-children') && currentChildren.children.length){
+					currentChildren.querySelectorAll('.formula-js-field.open').forEach(openField => {
+						openField.classList.remove('open');
+					});
+				}
+			}else{
+				chevron.parentElement.classList.add('open');
+			}
 
 			// Children not loaded
 			if(!chevron.parentElement.nextElementSibling.children.length){
