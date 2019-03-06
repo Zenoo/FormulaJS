@@ -331,6 +331,8 @@ class Formula {
 						// Remove previous Element if there is one
 						if (this._caret.previousElementSibling) {
 							this._caret.previousElementSibling.remove();
+
+							Reflect.apply(this._options.onUpdate, this, [this.get()]);
 						}
 					}
 
