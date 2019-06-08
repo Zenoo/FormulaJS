@@ -16,8 +16,8 @@ Generate formulas on the fly
 
 Simply import `formula.min.js` & `formula.min.css` into your HTML by downloading it or using a CDN.
 ```
-<link rel="stylesheet" href="https://gitcdn.link/repo/Zenoo/FormulaJS/master/formula.min.css">
-<script src="https://gitcdn.link/repo/Zenoo/FormulaJS/master/formula.min.js"></script>	
+<link rel="stylesheet" href="https://unpkg.com/@zenoo/formula-js@0.6.2/formula.min.css">
+<script src="https://unpkg.com/@zenoo/formula-js@0.6.2/formula.min.js"></script>	
 ```
 
 * **Demo**
