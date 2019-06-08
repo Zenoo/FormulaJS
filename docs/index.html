@@ -43,19 +43,23 @@
 
 
     <section>
-        <article><h1>FormulaJS</h1><p><a href="LICENSE"><img src="https://img.shields.io/github/last-commit/Zenoo/FormulaJS.svg" alt="last commit"></a>
+        <article><h1>FormulaJS</h1>
+<p><a href="LICENSE"><img src="https://img.shields.io/github/last-commit/Zenoo/FormulaJS.svg" alt="last commit"></a>
 <a href="https://github.com/Zenoo/FormulaJS/commits/master"><img src="https://img.shields.io/github/license/Zenoo/FormulaJS.svg" alt="MIT License"></a>
 <img src="https://img.shields.io/github/size/Zenoo/FormulaJS/formula.min.js.svg" alt="Size">
 <a href="https://www.npmjs.com/package/@zenoo/formula-js"><img src="https://img.shields.io/npm/v/@zenoo/formula-js.svg" alt="NPM Package"></a>
 <img src="https://img.shields.io/maintenance/yes/2019.svg" alt="Maintenance"></p>
 <p>Generate formulas on the fly</p>
 <p><a href="https://jsfiddle.net/Zenoo0/msgnwf2a/"><img src="https://github.com/Zenoo/FormulaJS/raw/master/FormulaJS-demo.gif" alt="Demo"></a></p>
-<h3>Doc</h3><ul>
+<h3>Doc</h3>
+<ul>
 <li><strong>Installation</strong></li>
 </ul>
 <p>Simply import <code>formula.min.js</code> &amp; <code>formula.min.css</code> into your HTML by downloading it or using a CDN.</p>
-<pre class="prettyprint source"><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://gitcdn.link/repo/Zenoo/FormulaJS/master/formula.min.css&quot;>
-&lt;script src=&quot;https://gitcdn.link/repo/Zenoo/FormulaJS/master/formula.min.js&quot;>&lt;/script>    </code></pre><ul>
+<pre class="prettyprint source"><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/@zenoo/formula-js@0.6.2/formula.min.css&quot;>
+&lt;script src=&quot;https://unpkg.com/@zenoo/formula-js@0.6.2/formula.min.js&quot;>&lt;/script>	
+</code></pre>
+<ul>
 <li><strong>Demo</strong></li>
 </ul>
 <p>A demo is available on this <a href="https://jsfiddle.net/Zenoo0/msgnwf2a/">JSFiddle</a></p>
@@ -67,7 +71,9 @@
 // OR
 const formula = new Formula(wrapperElement);
 // OR
-const formula = new Formula(wrapperElement, options);</code></pre><p>You can change the cursor position by clicking on an existing tag or pressing the left/right arrow keys.</p>
+const formula = new Formula(wrapperElement, options);
+</code></pre>
+<p>You can change the cursor position by clicking on an existing tag or pressing the left/right arrow keys.</p>
 <ul>
 <li><strong>Options</strong></li>
 </ul>
@@ -81,7 +87,9 @@ const formula = new Formula(wrapperElement, options);</code></pre><p>You can cha
   customFields: undefined,    // Custom Fields to display, see below
   onFieldExpand: function(field){ ... } // Callback REQUIRED if you use the 'children: true' Field property. Expects a Field-like object to be returned
   onUpdate: function(value){ ... } // Callback triggered whenever the Formula gets updated. It's first parameter is the String representation of the Formula
-}</code></pre><ul>
+}
+</code></pre>
+<ul>
 <li><strong>Custom Fields</strong></li>
 </ul>
 <p>If you want to allow the user to pick from some predefined properties, you can use the <code>customFields</code> attribute:</p>
@@ -114,37 +122,43 @@ const customFields = {
 const customFields = {
   firstField: {
     name: 'Pretty name',
-    children: true, // When using a Boolean as the children value, you have to use the 'onFieldExpand' callback, see below
-    customData: {   // This optional object will be returned as the second argument of the 'onFieldExpand' callback
-        whateverIWant: ':D'
-    }
+	children: true, // When using a Boolean as the children value, you have to use the 'onFieldExpand' callback, see below
+	customData: {   // This optional object will be returned as the second argument of the 'onFieldExpand' callback
+		whateverIWant: ':D'
+	}
   },
   whatever: {
     name: 'Prettier name'
   }
-};</code></pre><ul>
+};
+</code></pre>
+<ul>
 <li><strong>Dynamic fields</strong></li>
 </ul>
-<p>Using <code>children: true</code> as a Field property forces you to specify the  <code>onFieldExpand</code> callback. It will be called every time a new subtree is opened by the user.  </p>
+<p>Using <code>children: true</code> as a Field property forces you to specify the  <code>onFieldExpand</code> callback. It will be called every time a new subtree is opened by the user.</p>
 <ul>
-<li><p>The first parameter of this callback returns the field Node the user opened:</p>
-<pre class="prettyprint source lang-HTML"><code>&lt;li class=&quot;formula-js-field&quot; data-field=&quot;test&quot; data-name=&quot;Hey&quot;>Hey&lt;span class=&quot;children&quot;>&lt;/span>&lt;/li></code></pre><p>The <code>data-field</code> and <code>data-name</code> attribute will allow you to build the subtree accordingly.</p>
-</li>
-<li><p>The second parameter of this callback returns whatever you passed inside the <code>customData</code> attribute of your <code>Field</code></p>
-</li>
+<li>The first parameter of this callback returns the field Node the user opened:</li>
+</ul>
+<pre class="prettyprint source lang-HTML"><code>&lt;li class=&quot;formula-js-field&quot; data-field=&quot;test&quot; data-name=&quot;Hey&quot;>Hey&lt;span class=&quot;children&quot;>&lt;/span>&lt;/li>
+</code></pre>
+<p>The <code>data-field</code> and <code>data-name</code> attribute will allow you to build the subtree accordingly.</p>
+<ul>
+<li>The second parameter of this callback returns whatever you passed inside the <code>customData</code> attribute of your <code>Field</code></li>
 </ul>
 <p>The <code>onFieldExpand</code> callback expects a Promise that resolves with a Field-like object to be returned, which will be used to build the subtree.</p>
 <pre class="prettyprint source lang-js"><code>// Example
 onFieldExpand: field => {
   const
-    path = field.getAttribute('data-field'),
-    children = grabChildren(path);
+	path = field.getAttribute('data-field'),
+	children = grabChildren(path);
 
   return Promise.resolve(children.map(child => ({
     name: prettyName(child),
     children: hasChildren(child)
   })));
-}</code></pre><ul>
+}
+</code></pre>
+<ul>
 <li><strong>Methods</strong></li>
 </ul>
 <p>The full documentation is available on <a href="https://zenoo.github.io/FormulaJS/">https://zenoo.github.io/FormulaJS/</a>.</p>
@@ -156,7 +170,8 @@ onFieldExpand: field => {
 <li><strong><code>.clear()</code></strong></li>
 <li><strong><code>.destroy()</code></strong></li>
 </ul>
-<h2>Authors</h2><ul>
+<h2>Authors</h2>
+<ul>
 <li><strong>Zenoo</strong> - <em>Initial work</em> - <a href="http://zenoo.fr">Zenoo.fr</a></li>
 </ul></article>
     </section>
@@ -175,7 +190,7 @@ onFieldExpand: field => {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Mar 06 2019 10:31:28 GMT+0100 (Romance Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.2</a> on Sat Jun 08 2019 17:23:13 GMT+0200 (Central European Summer Time)
 </footer>
 
 <script> prettyPrint(); </script>
