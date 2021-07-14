@@ -1,12 +1,12 @@
 {
 	"name": "@zenoo/formula-js",
-	"version": "0.6.3",
+	"version": "0.6.4",
 	"description": "Generate formulas on the fly",
 	"main": "formula.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel formula.js -o formula.min.js && jsdoc . -R README.md -c docs/jsdoc-conf.json && git add -A . && git commit -m 'chore: Docs generation'",
-    "release": "npm run build && standard-version"
+		"build": "babel formula.js -o formula.min.js && jsdoc . -R README.md -c docs/jsdoc-conf.json && git add -A . && git commit -m 'chore: Docs generation'",
+		"release": "npm run build && standard-version"
 	},
 	"repository": {
 		"type": "git",
