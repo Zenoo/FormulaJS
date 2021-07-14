@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.5](https://github.com/Zenoo/FormulaJS/compare/v0.6.4...v0.6.5) (2021-07-14)
+
 ### [0.6.4](https://github.com/Zenoo/FormulaJS/compare/v0.6.3...v0.6.4) (2021-07-14)
 
 

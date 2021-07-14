@@ -1,6 +1,6 @@
 {
 	"name": "@zenoo/formula-js",
-	"version": "0.6.4",
+	"version": "0.6.5",
 	"description": "Generate formulas on the fly",
 	"main": "formula.js",
 	"scripts": {
