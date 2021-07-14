@@ -5,7 +5,8 @@
 	"main": "formula.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"preversion": "jsdoc . -R README.md -c docs/jsdoc-conf.json && git add * || true"
+    "build": "babel formula.js -o formula.min.js && jsdoc . -R README.md -c docs/jsdoc-conf.json && git add -A . && git commit -m 'chore: Docs generation'",
+    "release": "npm run build && standard-version"
 	},
 	"repository": {
 		"type": "git",
@@ -22,5 +23,53 @@
 	"bugs": {
 		"url": "https://github.com/Zenoo/FormulaJS/issues"
 	},
-	"homepage": "https://github.com/Zenoo/FormulaJS#readme"
+	"homepage": "https://github.com/Zenoo/FormulaJS#readme",
+	"devDependencies": {
+		"@babel/cli": "^7.14.5",
+		"@babel/core": "^7.14.6",
+		"@babel/preset-env": "^7.14.7",
+		"babel-preset-minify": "^0.5.1",
+		"jsdoc": "^3.6.7",
+		"standard-version": "^9.3.0"
+	},
+	"standard-version": {
+		"types": [
+			{
+				"type": "feat",
+				"section": "Features"
+			},
+			{
+				"type": "fix",
+				"section": "Bug Fixes"
+			},
+			{
+				"type": "chore",
+				"hidden": true
+			},
+			{
+				"type": "docs",
+				"section": "Documentation"
+			},
+			{
+				"type": "style",
+				"section": "Visual updates"
+			},
+			{
+				"type": "refactor",
+				"section": "Refactoring"
+			},
+			{
+				"type": "perf",
+				"section": "Performance"
+			},
+			{
+				"type": "progress",
+				"section": "Progress"
+			},
+			{
+				"type": "test",
+				"section": "Tests"
+			}
+		]
+	}
 }
