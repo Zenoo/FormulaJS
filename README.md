@@ -4,7 +4,7 @@
 [![MIT License](https://img.shields.io/github/license/Zenoo/FormulaJS.svg)](https://github.com/Zenoo/FormulaJS/commits/master)
 ![Size](https://img.shields.io/github/size/Zenoo/FormulaJS/formula.min.js.svg)
 [![NPM Package](https://img.shields.io/npm/v/@zenoo/formula-js.svg)](https://www.npmjs.com/package/@zenoo/formula-js)
-![Maintenance](https://img.shields.io/maintenance/yes/2019.svg)
+![Maintenance](https://img.shields.io/maintenance/yes/2021.svg)
  
 Generate formulas on the fly
 
