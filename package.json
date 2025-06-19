@@ -5,7 +5,7 @@
 	"main": "formula.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "babel formula.js -o formula.min.js && jsdoc . -R README.md -c docs/jsdoc-conf.json && git add -A . && git commit -m 'chore: Docs generation'",
+		"build": "babel formula.js -o formula.min.js && jsdoc . -R README.md -c docs/jsdoc-conf.json && git add -A . && git commit -m \"chore: Docs generation\"",
 		"release": "npm run build && standard-version"
 	},
 	"repository": {
