@@ -29,7 +29,7 @@
 		"@babel/core": "^7.14.6",
 		"@babel/preset-env": "^7.14.7",
 		"babel-preset-minify": "^0.5.1",
-		"jsdoc": "^3.6.7",
+		"jsdoc": "^4.0.4",
 		"standard-version": "^9.3.0"
 	},
 	"standard-version": {
