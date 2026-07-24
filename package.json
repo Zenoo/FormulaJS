@@ -25,9 +25,9 @@
 	},
 	"homepage": "https://github.com/Zenoo/FormulaJS#readme",
 	"devDependencies": {
-		"@babel/cli": "^7.27.2",
-		"@babel/core": "^7.27.4",
-		"@babel/preset-env": "^7.27.2",
+		"@babel/cli": "^8.0.0",
+		"@babel/core": "^8.0.0",
+		"@babel/preset-env": "^8.0.0",
 		"babel-preset-minify": "^0.5.2",
 		"jsdoc": "^4.0.4",
 		"standard-version": "^9.5.0"
